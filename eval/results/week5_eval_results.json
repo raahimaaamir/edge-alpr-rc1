@@ -1,0 +1,31 @@
+{
+  "report": {
+    "n_total": 690,
+    "n_ok": 592,
+    "n_correct": 520,
+    "n_incorrect_accepted": 72,
+    "n_not_covered": 98,
+    "exact_accuracy": 0.7536231884057971,
+    "coverage": 0.8579710144927536,
+    "incorrect_accepted_rate_of_total": 0.10434782608695652,
+    "incorrect_accepted_rate_of_accepted": 0.12162162162162163,
+    "char_accuracy_on_accepted": 0.9321911196911197,
+    "cer_on_accepted": 0.06780888030888031,
+    "char_accuracy_end_to_end": 0.7997929606625259,
+    "cer_end_to_end": 0.2002070393374741,
+    "latency_total": {
+      "mean_ms": 128.44678833188928,
+      "median_ms": 133.7079459999586,
+      "p95_ms": 158.95215729983644
+    },
+    "latency_detect_mean_ms": 78.42749863189056,
+    "latency_crop_mean_ms": 0.0173994434787702,
+    "latency_quality_mean_ms": 0.571862084058486,
+    "latency_recognize_mean_ms": 49.40290361013718
+  },
+  "n_tracks_found": 23,
+  "n_tracks_evaluated": 23,
+  "n_frames_evaluated": 690,
+  "skipped_tracks": [],
+  "scope_note": "UFPR held-out test tracks only (full raw frames); RodoSol test rows not included \u2014 see module docstring"
+}

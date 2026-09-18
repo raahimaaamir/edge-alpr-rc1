@@ -1,0 +1,445 @@
+{
+  "scope": "UFPR validation split, stride=2 + Top-3 majority, comparing V1 (Week 8) vs V2 (Week 9 hardened) rescue policy",
+  "v1_summary": {
+    "n": 22,
+    "coverage": 1.0,
+    "accuracy": 0.9545454545454546,
+    "n_incorrect_accepted": 1,
+    "n_rescue_triggered": 1,
+    "n_rescue_recovered_correct": 1,
+    "total_rescue_latency_ms": 289.5056079999847,
+    "mean_rescue_latency_ms_when_triggered": 289.5056079999847
+  },
+  "v2_summary": {
+    "n": 22,
+    "coverage": 1.0,
+    "accuracy": 0.9545454545454546,
+    "n_incorrect_accepted": 1,
+    "n_rescue_triggered": 1,
+    "n_rescue_recovered_correct": 1,
+    "total_rescue_latency_ms": 388.4788990000061,
+    "mean_rescue_latency_ms_when_triggered": 388.4788990000061
+  },
+  "v1_per_track": [
+    {
+      "track_id": "0003",
+      "gt_text": "AEI6611",
+      "status": "ok",
+      "text": "AEI6611",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0007",
+      "gt_text": "AQF6375",
+      "status": "ok",
+      "text": "AQF6375",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0042",
+      "gt_text": "AZJ4514",
+      "status": "ok",
+      "text": "AZJ4514",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0047",
+      "gt_text": "AMK8734",
+      "status": "ok",
+      "text": "AMK8734",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0049",
+      "gt_text": "ALK3720",
+      "status": "ok",
+      "text": "ALK3720",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0051",
+      "gt_text": "AOV3566",
+      "status": "ok",
+      "text": "AOV3566",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0055",
+      "gt_text": "AOI1778",
+      "status": "ok",
+      "text": "AOI1778",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0059",
+      "gt_text": "BBO8514",
+      "status": "ok",
+      "text": "BBO8514",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0060",
+      "gt_text": "APB4327",
+      "status": "ok",
+      "text": "APB4327",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0062",
+      "gt_text": "AXW3998",
+      "status": "ok",
+      "text": "AXW3998",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0064",
+      "gt_text": "AVC2257",
+      "status": "ok",
+      "text": "AVC2257",
+      "correct": true,
+      "rescue_triggered": true,
+      "rescue_latency_ms": 289.5056079999847
+    },
+    {
+      "track_id": "0080",
+      "gt_text": "APJ3829",
+      "status": "ok",
+      "text": "AP1382",
+      "correct": false,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0089",
+      "gt_text": "MHB6459",
+      "status": "ok",
+      "text": "MHB6459",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0091",
+      "gt_text": "MLS5511",
+      "status": "ok",
+      "text": "MLS5511",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0092",
+      "gt_text": "AQY6388",
+      "status": "ok",
+      "text": "AQY6388",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0101",
+      "gt_text": "AMR2189",
+      "status": "ok",
+      "text": "AMR2189",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0108",
+      "gt_text": "ARY9308",
+      "status": "ok",
+      "text": "ARY9308",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0113",
+      "gt_text": "PWC3858",
+      "status": "ok",
+      "text": "PWC3858",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0116",
+      "gt_text": "PYP1906",
+      "status": "ok",
+      "text": "PYP1906",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0127",
+      "gt_text": "AQW1379",
+      "status": "ok",
+      "text": "AQW1379",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0140",
+      "gt_text": "AVA1466",
+      "status": "ok",
+      "text": "AVA1466",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    },
+    {
+      "track_id": "0148",
+      "gt_text": "AKT8174",
+      "status": "ok",
+      "text": "AKT8174",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0
+    }
+  ],
+  "v2_per_track": [
+    {
+      "track_id": "0003",
+      "gt_text": "AEI6611",
+      "status": "ok",
+      "text": "AEI6611",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0007",
+      "gt_text": "AQF6375",
+      "status": "ok",
+      "text": "AQF6375",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0042",
+      "gt_text": "AZJ4514",
+      "status": "ok",
+      "text": "AZJ4514",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0047",
+      "gt_text": "AMK8734",
+      "status": "ok",
+      "text": "AMK8734",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0049",
+      "gt_text": "ALK3720",
+      "status": "ok",
+      "text": "ALK3720",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0051",
+      "gt_text": "AOV3566",
+      "status": "ok",
+      "text": "AOV3566",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0055",
+      "gt_text": "AOI1778",
+      "status": "ok",
+      "text": "AOI1778",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0059",
+      "gt_text": "BBO8514",
+      "status": "ok",
+      "text": "BBO8514",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0060",
+      "gt_text": "APB4327",
+      "status": "ok",
+      "text": "APB4327",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0062",
+      "gt_text": "AXW3998",
+      "status": "ok",
+      "text": "AXW3998",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0064",
+      "gt_text": "AVC2257",
+      "status": "ok",
+      "text": "AVC2257",
+      "correct": true,
+      "rescue_triggered": true,
+      "rescue_latency_ms": 388.4788990000061,
+      "normal_failure_kind": "zero_observations"
+    },
+    {
+      "track_id": "0080",
+      "gt_text": "APJ3829",
+      "status": "ok",
+      "text": "AP1382",
+      "correct": false,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0089",
+      "gt_text": "MHB6459",
+      "status": "ok",
+      "text": "MHB6459",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0091",
+      "gt_text": "MLS5511",
+      "status": "ok",
+      "text": "MLS5511",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0092",
+      "gt_text": "AQY6388",
+      "status": "ok",
+      "text": "AQY6388",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0101",
+      "gt_text": "AMR2189",
+      "status": "ok",
+      "text": "AMR2189",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0108",
+      "gt_text": "ARY9308",
+      "status": "ok",
+      "text": "ARY9308",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0113",
+      "gt_text": "PWC3858",
+      "status": "ok",
+      "text": "PWC3858",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0116",
+      "gt_text": "PYP1906",
+      "status": "ok",
+      "text": "PYP1906",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0127",
+      "gt_text": "AQW1379",
+      "status": "ok",
+      "text": "AQW1379",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0140",
+      "gt_text": "AVA1466",
+      "status": "ok",
+      "text": "AVA1466",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    },
+    {
+      "track_id": "0148",
+      "gt_text": "AKT8174",
+      "status": "ok",
+      "text": "AKT8174",
+      "correct": true,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "normal_failure_kind": null
+    }
+  ]
+}

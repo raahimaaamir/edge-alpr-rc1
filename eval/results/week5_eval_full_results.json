@@ -1,0 +1,78 @@
+{
+  "ufpr_report": {
+    "n_total": 690,
+    "n_ok": 592,
+    "n_correct": 520,
+    "n_incorrect_accepted": 72,
+    "n_not_covered": 98,
+    "exact_accuracy": 0.7536231884057971,
+    "coverage": 0.8579710144927536,
+    "incorrect_accepted_rate_of_total": 0.10434782608695652,
+    "incorrect_accepted_rate_of_accepted": 0.12162162162162163,
+    "char_accuracy_on_accepted": 0.9321911196911197,
+    "cer_on_accepted": 0.06780888030888031,
+    "char_accuracy_end_to_end": 0.7997929606625259,
+    "cer_end_to_end": 0.2002070393374741,
+    "latency_total": {
+      "mean_ms": 140.34222052173786,
+      "median_ms": 140.60154650019285,
+      "p95_ms": 190.7743440502145
+    },
+    "latency_detect_mean_ms": 85.240934856515,
+    "latency_crop_mean_ms": 0.02089659565040231,
+    "latency_quality_mean_ms": 0.611866355075767,
+    "latency_recognize_mean_ms": 54.44023202318826
+  },
+  "rodosol_report": {
+    "n_total": 3000,
+    "n_ok": 2436,
+    "n_correct": 2335,
+    "n_incorrect_accepted": 101,
+    "n_not_covered": 564,
+    "exact_accuracy": 0.7783333333333333,
+    "coverage": 0.812,
+    "incorrect_accepted_rate_of_total": 0.033666666666666664,
+    "incorrect_accepted_rate_of_accepted": 0.04146141215106732,
+    "char_accuracy_on_accepted": 0.9804128547970913,
+    "cer_on_accepted": 0.01958714520290875,
+    "char_accuracy_end_to_end": 0.7960952380952381,
+    "cer_end_to_end": 0.2039047619047619,
+    "latency_total": {
+      "mean_ms": 123.84671986467022,
+      "median_ms": 131.2811894999868,
+      "p95_ms": 152.48107785014327
+    },
+    "latency_detect_mean_ms": 76.70619738733633,
+    "latency_crop_mean_ms": 0.016201475665942173,
+    "latency_quality_mean_ms": 0.6347403033440363,
+    "latency_recognize_mean_ms": 46.451387826997234
+  },
+  "combined_report": {
+    "n_total": 3690,
+    "n_ok": 3028,
+    "n_correct": 2855,
+    "n_incorrect_accepted": 173,
+    "n_not_covered": 662,
+    "exact_accuracy": 0.7737127371273713,
+    "coverage": 0.8205962059620596,
+    "incorrect_accepted_rate_of_total": 0.046883468834688344,
+    "incorrect_accepted_rate_of_accepted": 0.0571334214002642,
+    "char_accuracy_on_accepted": 0.9709850915267032,
+    "cer_on_accepted": 0.02901490847329685,
+    "char_accuracy_end_to_end": 0.7967866821525358,
+    "cer_end_to_end": 0.2032133178474642,
+    "latency_total": {
+      "mean_ms": 126.93124437778043,
+      "median_ms": 132.7173294998829,
+      "p95_ms": 162.568710649748
+    },
+    "latency_detect_mean_ms": 78.30212390596324,
+    "latency_crop_mean_ms": 0.017079424931329027,
+    "latency_quality_mean_ms": 0.630463060984929,
+    "latency_recognize_mean_ms": 47.94523674173214
+  },
+  "ufpr_n_frames": 690,
+  "rodosol_n_images": 3000,
+  "ufpr_skipped_tracks": [],
+  "rodosol_skipped_images": []
+}

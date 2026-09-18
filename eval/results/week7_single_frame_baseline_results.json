@@ -1,0 +1,29 @@
+{
+  "scope": "UFPR validation split, single-frame (no tracking/fusion) \u2014 the apples-to-apples baseline for Week 7's track-level comparison",
+  "report": {
+    "n_total": 660,
+    "n_ok": 583,
+    "n_correct": 524,
+    "n_incorrect_accepted": 59,
+    "n_not_covered": 77,
+    "exact_accuracy": 0.793939393939394,
+    "coverage": 0.8833333333333333,
+    "incorrect_accepted_rate_of_total": 0.0893939393939394,
+    "incorrect_accepted_rate_of_accepted": 0.10120068610634649,
+    "char_accuracy_on_accepted": 0.9656946826758147,
+    "cer_on_accepted": 0.03430531732418525,
+    "char_accuracy_end_to_end": 0.853030303030303,
+    "cer_end_to_end": 0.14696969696969697,
+    "latency_total": {
+      "mean_ms": 36.24156767878566,
+      "median_ms": 34.81820799993329,
+      "p95_ms": 48.13687274987613
+    },
+    "latency_detect_mean_ms": 21.89742634394151,
+    "latency_crop_mean_ms": 0.0056543545535229596,
+    "latency_quality_mean_ms": 0.17607786514872714,
+    "latency_recognize_mean_ms": 14.153971103029438
+  },
+  "n_frames_evaluated": 660,
+  "skipped_tracks": []
+}

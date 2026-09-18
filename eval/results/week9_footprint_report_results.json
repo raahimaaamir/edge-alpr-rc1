@@ -1,0 +1,243 @@
+{
+  "summary": {
+    "n_encounters": 22,
+    "mean_detect_ms_per_frame": 22.97258694897887,
+    "mean_recognize_ms_per_frame": 16.643337636049576,
+    "mean_tracking_fusion_overhead_ms": 0.06550545454460503,
+    "mean_total_processing_ms_per_encounter": 591.9238220454458,
+    "mean_frames_sampled": 15.0,
+    "mean_frames_total": 30.0,
+    "mean_frames_ocrd": 13.363636363636363,
+    "rescue_frequency": 0.045454545454545456,
+    "mean_rescue_latency_ms_when_triggered": 264.80431499999213,
+    "peak_memory_kb": 557612,
+    "peak_memory_mb": 544.5,
+    "onnx_model_sizes_mb": {
+      "/workspace/home/alpr-week5/output/full_run1/onnx/best.onnx": 5.04,
+      "/workspace/home/alpr-week5/output/v1_1_finetune_balanced/onnx/best.onnx": 5.04,
+      "/root/.cache/open-image-models/yolo-v9-t-384-license-plate-end2end/yolo-v9-t-384-license-plates-end2end.onnx": 7.41
+    }
+  },
+  "per_encounter": [
+    {
+      "track_id": "0003",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 15,
+      "total_processing_ms": 682.0600519999971,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0007",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 15,
+      "total_processing_ms": 646.2702680000803,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0042",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 15,
+      "total_processing_ms": 522.3257540000077,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0047",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 15,
+      "total_processing_ms": 659.0957320000825,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0049",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 15,
+      "total_processing_ms": 600.1472069999636,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0051",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 15,
+      "total_processing_ms": 546.3754879999669,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0055",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 15,
+      "total_processing_ms": 536.0413920000155,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0059",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 15,
+      "total_processing_ms": 560.8270269999593,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0060",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 15,
+      "total_processing_ms": 566.2657279999621,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0062",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 13,
+      "total_processing_ms": 573.2548319999751,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0064",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 0,
+      "total_processing_ms": 811.0794189999524,
+      "rescue_triggered": true,
+      "rescue_latency_ms": 264.80431499999213,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0080",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 15,
+      "total_processing_ms": 557.798565999974,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "no_reliable_result"
+    },
+    {
+      "track_id": "0089",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 15,
+      "total_processing_ms": 556.8693149999717,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0091",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 10,
+      "total_processing_ms": 553.0158739999251,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0092",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 11,
+      "total_processing_ms": 488.6695239999881,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0101",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 11,
+      "total_processing_ms": 567.7000360000193,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0108",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 15,
+      "total_processing_ms": 628.751970000053,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0113",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 14,
+      "total_processing_ms": 524.8536949999334,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0116",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 15,
+      "total_processing_ms": 607.6870219999364,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0127",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 10,
+      "total_processing_ms": 523.4480689999828,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0140",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 15,
+      "total_processing_ms": 666.0804450000342,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    },
+    {
+      "track_id": "0148",
+      "n_total_frames": 30,
+      "n_sampled_frames": 15,
+      "n_frames_ocrd": 15,
+      "total_processing_ms": 643.7066700000287,
+      "rescue_triggered": false,
+      "rescue_latency_ms": 0.0,
+      "final_status": "ok"
+    }
+  ]
+}

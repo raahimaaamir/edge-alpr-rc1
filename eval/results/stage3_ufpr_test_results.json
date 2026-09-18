@@ -1,0 +1,47 @@
+{
+  "report": {
+    "single_frame_exact_match_acc": 0.8783783783783784,
+    "single_frame_n": 592,
+    "fused_exact_match_acc": 0.8666666666666667,
+    "fused_n": 30,
+    "per_method_fused_acc": {
+      "best_single_frame": {
+        "accuracy": 0.8709677419354839,
+        "n": 31
+      },
+      "majority_vote": {
+        "accuracy": 0.8666666666666667,
+        "n": 30
+      },
+      "confidence_weighted_vote": {
+        "accuracy": 0.896551724137931,
+        "n": 29
+      },
+      "per_char_confidence": {
+        "accuracy": 0.8666666666666667,
+        "n": 30
+      }
+    },
+    "num_tracks_total": 31,
+    "num_tracks_ok": 30,
+    "num_tracks_no_reliable_result": 1,
+    "track_coverage": 0.967741935483871,
+    "mean_frames_used_per_ok_result": 18.733333333333334,
+    "mean_frames_total_per_track": 19.096774193548388,
+    "mean_pipeline_ms_per_frame": 289.0355027884102,
+    "tracker_eval": {
+      "num_gt_tracks": 23,
+      "num_gt_observations": 690,
+      "num_predicted_tracks": 31,
+      "num_missed_detections": 131,
+      "num_false_positive_tracks": 4,
+      "num_id_switches": 0,
+      "num_fragmentations": 5,
+      "mean_track_purity": 0.8709677419354839,
+      "per_track_purity": {}
+    }
+  },
+  "skipped_tracks": [],
+  "num_test_tracks_found": 23,
+  "num_test_tracks_evaluated": 23
+}

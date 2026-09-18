@@ -1,0 +1,37 @@
+{
+  "scope": "UFPR validation split, stride=2 + Top-3 majority + Week8 decision rule as the baseline pipeline; rescue applied only to failing encounters",
+  "acceptance_config": {
+    "top_k": 3,
+    "min_usable_observations": 2,
+    "min_agreement_count": 2
+  },
+  "rescue_config": {
+    "grid": [
+      2,
+      2
+    ],
+    "overlap_frac": 0.15,
+    "nms_iou_thresh": 0.3,
+    "max_results": 3
+  },
+  "n_failing_encounters": 1,
+  "n_recovered_correct": 1,
+  "n_recovered_but_wrong": 0,
+  "n_unchanged": 0,
+  "mean_rescue_latency_ms": 305.08670099999335,
+  "total_rescue_latency_ms": 305.08670099999335,
+  "failing_encounters": [
+    {
+      "track_id": "0064",
+      "gt_text": "AVC2257",
+      "before_status": "complete_detection_failure",
+      "before_reason": "zero usable observations",
+      "num_candidate_frames_tried": 3,
+      "num_new_observations_found": 3,
+      "after_status": "ok",
+      "after_text": "AVC2257",
+      "outcome": "recovered_correct",
+      "rescue_latency_ms": 305.08670099999335
+    }
+  ]
+}

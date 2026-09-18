@@ -1,0 +1,64 @@
+{
+  "frozen_date": "2026-09-12",
+  "release_candidate": "RC1",
+  "stride": 2,
+  "tracking_and_fusion": {
+    "tracker": {
+      "iou_threshold": 0.3,
+      "max_center_disp_frac": 0.5,
+      "max_missing_frames": 5,
+      "require_both_gates": false
+    },
+    "fusion": {
+      "min_agreement_ratio": 0.5,
+      "min_frames_used": 1,
+      "min_overall_conf": 0.0
+    },
+    "fusion_method": "majority_vote",
+    "detector_conf_thresh": 0.25
+  },
+  "acceptance": {
+    "top_k": 3,
+    "min_usable_observations": 2,
+    "min_agreement_count": 2
+  },
+  "decision_rule": {
+    "module": "decision_rule_rc1.decide_rc1",
+    "supersedes": "week9_decision_rule.decide_v2",
+    "path": [
+      "adequate observations",
+      "temporal agreement",
+      "confidence check",
+      "applicable plate-profile validation",
+      "ACCEPT / NO_RELIABLE_RESULT"
+    ],
+    "min_winning_confidence": 0.9,
+    "min_winning_confidence_note": "validation-selected conservative heuristic, not a calibrated probability",
+    "plate_profile_note": "optional; skipped entirely when jurisdiction unknown, never a forced rejection",
+    "rule_comparison_note": "rules B (confidence-only), E (profile-only), and F (both, this rule) produced IDENTICAL results on the 22-track validation set \u2014 F was chosen for independent-check architecture, not a demonstrated accuracy benefit on this dataset; see model_card_recognizer_v1_1.md"
+  },
+  "rescue": {
+    "max_candidate_frames": 3,
+    "tiled_config": {
+      "grid": [
+        2,
+        2
+      ],
+      "overlap_frac": 0.15,
+      "nms_iou_thresh": 0.3,
+      "max_results": 3
+    },
+    "rescue_acceptance": {
+      "top_k": 50,
+      "min_usable_observations": 2,
+      "min_agreement_count": 2
+    }
+  },
+  "recognizer": {
+    "default_model_path": "/workspace/home/alpr-week5/RC1_PACKAGE/output/v1_1_finetune_balanced/onnx/best.onnx",
+    "default_model_sha256": "c9c4f6196c6c1a0a10e9d06d74ee091df95cb00a896c1f213241ac1a179feb28",
+    "config_path": "/workspace/home/alpr-week5/RC1_PACKAGE/weights/cct_s_v2_global_plate_config.yaml",
+    "v1_fallback_model_path": "/workspace/home/alpr-week5/RC1_PACKAGE/output/full_run1/onnx/best.onnx",
+    "v1_fallback_model_sha256": "5e03d7fdbc6120262a3fabb9a6c39a299426338f4e538a51d75f378a8f7308e9"
+  }
+}

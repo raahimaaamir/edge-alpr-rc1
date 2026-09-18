@@ -1,0 +1,217 @@
+{
+  "n_total": 13,
+  "n_with_prediction": 11,
+  "n_exact_match": 5,
+  "exact_match_rate": 0.38461538461538464,
+  "mean_length_diff": 0.5454545454545454,
+  "length_diff_histogram": {
+    "0": 5,
+    "1": 6
+  },
+  "n_same_length": 5,
+  "n_predicted_longer": 6,
+  "n_predicted_shorter": 0,
+  "total_insertions": 6,
+  "total_deletions": 0,
+  "total_substitutions": 12,
+  "comparisons": [
+    {
+      "predicted_raw": "CMK7507",
+      "predicted_normalized": "CMK7507",
+      "ground_truth": "CMK7507",
+      "gt_length": 7,
+      "predicted_length": 7,
+      "length_diff": 0,
+      "exact_match": true,
+      "ops": {
+        "insertions": 0,
+        "deletions": 0,
+        "substitutions": 0,
+        "matches": 7
+      },
+      "substituted_pairs": []
+    },
+    {
+      "predicted_raw": "3BP6997",
+      "predicted_normalized": "3BP6997",
+      "ground_truth": "38P697",
+      "gt_length": 6,
+      "predicted_length": 7,
+      "length_diff": 1,
+      "exact_match": false,
+      "ops": {
+        "insertions": 1,
+        "deletions": 0,
+        "substitutions": 1,
+        "matches": 5
+      },
+      "substituted_pairs": []
+    },
+    {
+      "predicted_raw": "CTY8283",
+      "predicted_normalized": "CTY8283",
+      "ground_truth": "CTY8283",
+      "gt_length": 7,
+      "predicted_length": 7,
+      "length_diff": 0,
+      "exact_match": true,
+      "ops": {
+        "insertions": 0,
+        "deletions": 0,
+        "substitutions": 0,
+        "matches": 7
+      },
+      "substituted_pairs": []
+    },
+    {
+      "predicted_raw": "CSV4780",
+      "predicted_normalized": "CSV4780",
+      "ground_truth": "CSV4780",
+      "gt_length": 7,
+      "predicted_length": 7,
+      "length_diff": 0,
+      "exact_match": true,
+      "ops": {
+        "insertions": 0,
+        "deletions": 0,
+        "substitutions": 0,
+        "matches": 7
+      },
+      "substituted_pairs": []
+    },
+    {
+      "predicted_raw": "BPM9818",
+      "predicted_normalized": "BPM9818",
+      "ground_truth": "BPM9818",
+      "gt_length": 7,
+      "predicted_length": 7,
+      "length_diff": 0,
+      "exact_match": true,
+      "ops": {
+        "insertions": 0,
+        "deletions": 0,
+        "substitutions": 0,
+        "matches": 7
+      },
+      "substituted_pairs": []
+    },
+    {
+      "predicted_raw": "CYZ7703",
+      "predicted_normalized": "CYZ7703",
+      "ground_truth": "CYZ7703",
+      "gt_length": 7,
+      "predicted_length": 7,
+      "length_diff": 0,
+      "exact_match": true,
+      "ops": {
+        "insertions": 0,
+        "deletions": 0,
+        "substitutions": 0,
+        "matches": 7
+      },
+      "substituted_pairs": []
+    },
+    {
+      "predicted_raw": null,
+      "predicted_normalized": null,
+      "ground_truth": "BCP7506",
+      "gt_length": 7,
+      "predicted_length": null,
+      "length_diff": null,
+      "exact_match": false,
+      "ops": null,
+      "substituted_pairs": []
+    },
+    {
+      "predicted_raw": "PVV0555",
+      "predicted_normalized": "PVV0555",
+      "ground_truth": "PVV055",
+      "gt_length": 6,
+      "predicted_length": 7,
+      "length_diff": 1,
+      "exact_match": false,
+      "ops": {
+        "insertions": 1,
+        "deletions": 0,
+        "substitutions": 0,
+        "matches": 6
+      },
+      "substituted_pairs": []
+    },
+    {
+      "predicted_raw": "DPP0630",
+      "predicted_normalized": "DPP0630",
+      "ground_truth": "DJPT60",
+      "gt_length": 6,
+      "predicted_length": 7,
+      "length_diff": 1,
+      "exact_match": false,
+      "ops": {
+        "insertions": 1,
+        "deletions": 0,
+        "substitutions": 2,
+        "matches": 4
+      },
+      "substituted_pairs": []
+    },
+    {
+      "predicted_raw": "APM8845",
+      "predicted_normalized": "APM8845",
+      "ground_truth": "BPD845",
+      "gt_length": 6,
+      "predicted_length": 7,
+      "length_diff": 1,
+      "exact_match": false,
+      "ops": {
+        "insertions": 1,
+        "deletions": 0,
+        "substitutions": 2,
+        "matches": 4
+      },
+      "substituted_pairs": []
+    },
+    {
+      "predicted_raw": null,
+      "predicted_normalized": null,
+      "ground_truth": "NEL248",
+      "gt_length": 6,
+      "predicted_length": null,
+      "length_diff": null,
+      "exact_match": false,
+      "ops": null,
+      "substituted_pairs": []
+    },
+    {
+      "predicted_raw": "ZZ64NN5",
+      "predicted_normalized": "ZZ64NN5",
+      "ground_truth": "726NNS",
+      "gt_length": 6,
+      "predicted_length": 7,
+      "length_diff": 1,
+      "exact_match": false,
+      "ops": {
+        "insertions": 1,
+        "deletions": 0,
+        "substitutions": 3,
+        "matches": 3
+      },
+      "substituted_pairs": []
+    },
+    {
+      "predicted_raw": "PHZ1MM0",
+      "predicted_normalized": "PHZ1MM0",
+      "ground_truth": "242MMQ",
+      "gt_length": 6,
+      "predicted_length": 7,
+      "length_diff": 1,
+      "exact_match": false,
+      "ops": {
+        "insertions": 1,
+        "deletions": 0,
+        "substitutions": 4,
+        "matches": 2
+      },
+      "substituted_pairs": []
+    }
+  ]
+}

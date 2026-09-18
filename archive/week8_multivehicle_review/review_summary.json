@@ -1,0 +1,398 @@
+{
+  "video-01": {
+    "num_frames": 335,
+    "num_tracks": 1,
+    "tracks": [
+      {
+        "track_id": 0,
+        "num_observations": 335,
+        "num_usable_observations": 335,
+        "frame_range": [
+          0,
+          668
+        ],
+        "distinct_readings": {
+          "CMK7507": 167,
+          "PMK7507": 43,
+          "MMK7507": 104,
+          "GMK7507": 7,
+          "SMK7507": 11,
+          "PMA7507": 1,
+          "MMA7507": 1,
+          "CMA7507": 1
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-01/frame00208_crop.jpg"
+      }
+    ]
+  },
+  "video-02": {
+    "num_frames": 350,
+    "num_tracks": 1,
+    "tracks": [
+      {
+        "track_id": 0,
+        "num_observations": 350,
+        "num_usable_observations": 350,
+        "frame_range": [
+          0,
+          698
+        ],
+        "distinct_readings": {
+          "3BP6997": 166,
+          "3BP6697": 26,
+          "3BP6597": 75,
+          "3BP6977": 49,
+          "3BP8597": 4,
+          "3BP8997": 2,
+          "3BP8697": 24,
+          "3BPP697": 4
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-02/frame00124_crop.jpg"
+      }
+    ]
+  },
+  "video-03": {
+    "num_frames": 358,
+    "num_tracks": 1,
+    "tracks": [
+      {
+        "track_id": 0,
+        "num_observations": 358,
+        "num_usable_observations": 358,
+        "frame_range": [
+          0,
+          714
+        ],
+        "distinct_readings": {
+          "CTY8283": 358
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-03/frame00600_crop.jpg"
+      }
+    ]
+  },
+  "video-04": {
+    "num_frames": 402,
+    "num_tracks": 1,
+    "tracks": [
+      {
+        "track_id": 0,
+        "num_observations": 402,
+        "num_usable_observations": 402,
+        "frame_range": [
+          0,
+          802
+        ],
+        "distinct_readings": {
+          "CSV4780": 402
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-04/frame00248_crop.jpg"
+      }
+    ]
+  },
+  "video-05": {
+    "num_frames": 323,
+    "num_tracks": 1,
+    "tracks": [
+      {
+        "track_id": 0,
+        "num_observations": 323,
+        "num_usable_observations": 323,
+        "frame_range": [
+          0,
+          644
+        ],
+        "distinct_readings": {
+          "BPM9818": 323
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-05/frame00208_crop.jpg"
+      }
+    ]
+  },
+  "video-06": {
+    "num_frames": 324,
+    "num_tracks": 1,
+    "tracks": [
+      {
+        "track_id": 0,
+        "num_observations": 324,
+        "num_usable_observations": 324,
+        "frame_range": [
+          0,
+          646
+        ],
+        "distinct_readings": {
+          "CYZ7703": 324
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-06/frame00244_crop.jpg"
+      }
+    ]
+  },
+  "video-07": {
+    "num_frames": 321,
+    "num_tracks": 13,
+    "tracks": [
+      {
+        "track_id": 0,
+        "num_observations": 38,
+        "num_usable_observations": 38,
+        "frame_range": [
+          0,
+          78
+        ],
+        "distinct_readings": {
+          "LPM7900": 1,
+          "LPP7901": 1,
+          "LCP7H01": 1,
+          "ICP1B01": 1,
+          "QPT9H11": 1,
+          "QCP7901": 1,
+          "PPP7200": 1,
+          "CPI9H11": 1,
+          "PLP1501": 1,
+          "LLP1991": 2,
+          "OFI5D11": 1,
+          "PCF5D11": 1,
+          "IPE7501": 1,
+          "IIG7H00": 1,
+          "IIG9H91": 1,
+          "ICH9H91": 1,
+          "IUH5B11": 1,
+          "QPH9911": 1,
+          "LLP7B91": 1,
+          "LPP1909": 1,
+          "LPT5H01": 1,
+          "IPP1901": 1,
+          "QMP7D11": 1,
+          "LRP7P01": 1,
+          "PCP1201": 1,
+          "QPP1D81": 1,
+          "QPP1D01": 1,
+          "OPP9H11": 1,
+          "IPP9H01": 1,
+          "IRP1991": 1,
+          "IPP9B91": 1,
+          "ILP9H91": 1,
+          "IRP6H11": 1,
+          "IOP1B81": 1,
+          "JLP1981": 1,
+          "IUP9B11": 1,
+          "ICP1991": 1
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-07/frame00000_crop.jpg"
+      },
+      {
+        "track_id": 1,
+        "num_observations": 1,
+        "num_usable_observations": 1,
+        "frame_range": [
+          34,
+          34
+        ],
+        "distinct_readings": {
+          "QRE3E77": 1
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-07/frame00034_crop.jpg"
+      },
+      {
+        "track_id": 2,
+        "num_observations": 23,
+        "num_usable_observations": 21,
+        "frame_range": [
+          92,
+          138
+        ],
+        "distinct_readings": {
+          "IRB1981": 1,
+          "IRE7B81": 1,
+          "IWP9B91": 1,
+          "ICP9X91": 1,
+          "QRP9H11": 1,
+          "IRB1991": 1,
+          "IRP1901": 1,
+          "IRP1991": 1,
+          "IEP1980": 1,
+          "MBP1H11": 1,
+          "BOP1941": 1,
+          "MOP1981": 1,
+          "OVA9941": 1,
+          "MOP1H41": 1,
+          "MSP1594": 1,
+          "QRK9971": 1,
+          "MOF7991": 1,
+          "MSF1991": 1,
+          "QRH9A11": 1,
+          "MRX1D21": 1,
+          "PMY3G51": 1
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-07/frame00092_crop.jpg"
+      },
+      {
+        "track_id": 3,
+        "num_observations": 2,
+        "num_usable_observations": 2,
+        "frame_range": [
+          234,
+          236
+        ],
+        "distinct_readings": {
+          "QRZ7E97": 1,
+          "OQZ7E62": 1
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-07/frame00234_crop.jpg"
+      },
+      {
+        "track_id": 4,
+        "num_observations": 8,
+        "num_usable_observations": 8,
+        "frame_range": [
+          258,
+          278
+        ],
+        "distinct_readings": {
+          "OQB7E69": 1,
+          "OQZ7E67": 2,
+          "OQZ7C67": 1,
+          "QRG7C77": 1,
+          "QRG7H77": 2,
+          "QRG7977": 1
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-07/frame00272_crop.jpg"
+      },
+      {
+        "track_id": 5,
+        "num_observations": 1,
+        "num_usable_observations": 1,
+        "frame_range": [
+          300,
+          300
+        ],
+        "distinct_readings": {
+          "MAP1632": 1
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-07/frame00300_crop.jpg"
+      },
+      {
+        "track_id": 6,
+        "num_observations": 1,
+        "num_usable_observations": 1,
+        "frame_range": [
+          334,
+          334
+        ],
+        "distinct_readings": {
+          "MRH7I77": 1
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-07/frame00334_crop.jpg"
+      },
+      {
+        "track_id": 7,
+        "num_observations": 2,
+        "num_usable_observations": 1,
+        "frame_range": [
+          380,
+          384
+        ],
+        "distinct_readings": {
+          "ADP6A51": 1
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-07/frame00380_crop.jpg"
+      },
+      {
+        "track_id": 8,
+        "num_observations": 1,
+        "num_usable_observations": 1,
+        "frame_range": [
+          402,
+          402
+        ],
+        "distinct_readings": {
+          "QCE6332": 1
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-07/frame00402_crop.jpg"
+      },
+      {
+        "track_id": 9,
+        "num_observations": 8,
+        "num_usable_observations": 7,
+        "frame_range": [
+          416,
+          440
+        ],
+        "distinct_readings": {
+          "OMG8I11": 1,
+          "ODP6911": 1,
+          "PPM6H11": 1,
+          "QMM8D11": 1,
+          "OME2I17": 1,
+          "OPG2Y11": 1,
+          "AUI6H11": 1
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-07/frame00422_crop.jpg"
+      },
+      {
+        "track_id": 10,
+        "num_observations": 1,
+        "num_usable_observations": 1,
+        "frame_range": [
+          428,
+          428
+        ],
+        "distinct_readings": {
+          "PK7345": 1
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-07/frame00428_crop.jpg"
+      },
+      {
+        "track_id": 11,
+        "num_observations": 34,
+        "num_usable_observations": 32,
+        "frame_range": [
+          458,
+          540
+        ],
+        "distinct_readings": {
+          "APH4C77": 1,
+          "PGV1321": 1,
+          "MRR1I33": 1,
+          "QRF9H11": 1,
+          "MGP1551": 1,
+          "ICP6591": 1,
+          "ITM7H59": 1,
+          "IVP9G99": 1,
+          "IJM1G62": 1,
+          "PPM1C52": 1,
+          "QPM0C22": 1,
+          "IMD0B91": 1,
+          "JIM9H91": 1,
+          "JJM9H69": 1,
+          "JIM9H59": 1,
+          "ILP6H99": 1,
+          "IJC9H62": 1,
+          "IDH1C72": 1,
+          "IJM5C92": 1,
+          "IJM5H62": 1,
+          "IPH0C32": 1,
+          "ILM6H11": 1,
+          "IIC6H83": 1,
+          "ILM6G81": 1,
+          "ILM6A11": 1,
+          "IIC3H62": 1,
+          "ILM6H21": 1,
+          "ILP6H11": 1,
+          "ILV6H11": 1,
+          "JIC6H11": 1,
+          "JIL0H11": 1,
+          "JLC5H91": 1
+        },
+        "representative_crop": "/workspace/home/alpr-week5/pipeline/week8_multivehicle_review/video-07/frame00476_crop.jpg"
+      },
+      {
+        "track_id": 12,
+        "num_observations": 1,
+        "note": "no usable OCR observations in this track",
+        "distinct_readings": {},
+        "representative_crop": null
+      }
+    ]
+  }
+}
