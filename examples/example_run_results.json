@@ -1,0 +1,93 @@
+[
+  {
+    "key": "plate01",
+    "ground_truth": "PVV055",
+    "predicted": "PVV055",
+    "status": "ok",
+    "correct": true
+  },
+  {
+    "key": "plate02",
+    "ground_truth": "DJPT60",
+    "predicted": "DJP160",
+    "status": "ok",
+    "correct": false
+  },
+  {
+    "key": "plate03",
+    "ground_truth": "BPD845",
+    "predicted": "PP8884",
+    "status": "ok",
+    "correct": false
+  },
+  {
+    "key": "plate04",
+    "ground_truth": "NEL248",
+    "predicted": null,
+    "status": "no_detection",
+    "correct": false
+  },
+  {
+    "key": "plate05",
+    "ground_truth": "726NNS",
+    "predicted": "726NNS",
+    "status": "ok",
+    "correct": true
+  },
+  {
+    "key": "plate06",
+    "ground_truth": "242MMQ",
+    "predicted": "242MMQ",
+    "status": "ok",
+    "correct": true
+  },
+  {
+    "key": "video-01",
+    "ground_truth": "CMK7507",
+    "predicted": "CMK7507",
+    "status": "ok",
+    "correct": true
+  },
+  {
+    "key": "video-02",
+    "ground_truth": "38P697",
+    "predicted": "38P697",
+    "status": "ok",
+    "correct": true
+  },
+  {
+    "key": "video-03",
+    "ground_truth": "CTY8283",
+    "predicted": "CTY8283",
+    "status": "ok",
+    "correct": true
+  },
+  {
+    "key": "video-04",
+    "ground_truth": "CSV4780",
+    "predicted": "CSV4780",
+    "status": "ok",
+    "correct": true
+  },
+  {
+    "key": "video-05",
+    "ground_truth": "BPM9818",
+    "predicted": "BPM9818",
+    "status": "ok",
+    "correct": true
+  },
+  {
+    "key": "video-06",
+    "ground_truth": "CYZ7703",
+    "predicted": "CYZ7703",
+    "status": "ok",
+    "correct": true
+  },
+  {
+    "key": "video-07",
+    "ground_truth": "BCP7506",
+    "predicted": "PCP350",
+    "status": "ok",
+    "correct": false
+  }
+]
