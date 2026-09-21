@@ -7,6 +7,8 @@ abstain. This is Release Candidate 1 (RC1), technically frozen
 the project — if anything here doesn't work as described, that's a bug
 in the package, not a gap in your setup.
 
+See `ARCHITECTURE.md` for the full pipeline diagram.
+
 ## What this system does
 
 Given a video (or a single image), it finds license plates, tracks
