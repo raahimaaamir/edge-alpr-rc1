@@ -50,8 +50,9 @@ class VideoAlprPipeline:
     into one video-level entry point.
 
     single_frame_pipeline must expose .process(image, image_id=...) ->
-    PlateResult (or a list of PlateResults, for frames with multiple plates —
-    see process_video's `multi_plate` flag), matching alpr_pipeline.py.
+    PlateResult (used when multi_plate=False, the default) and
+    .process_all(image, image_id=...) -> list[PlateResult] (used when
+    multi_plate=True) — matching alpr_pipeline.py's AlprPipeline exactly.
     """
 
     def __init__(
@@ -72,19 +73,22 @@ class VideoAlprPipeline:
         """frames: iterable of (frame_idx: int, timestamp: Optional[float], image).
         Returns (list[TrackResult], list[Track], VideoRunStats).
 
-        If multi_plate is True, single_frame_pipeline.process() is expected
-        to return a list of PlateResults per frame (one detector call, top-K
-        boxes) instead of a single PlateResult; each becomes its own
-        observation candidate for that frame, and the tracker associates
-        across all of them. Default False matches the current single-plate
-        alpr_pipeline.py.
+        If multi_plate is True, calls single_frame_pipeline.process_all()
+        instead of .process() — one detector call, every detection above
+        threshold becomes its own observation candidate for that frame,
+        and the tracker associates across all of them, so more than one
+        vehicle's plate can be tracked from the same frame. Default False
+        calls .process() (single highest-confidence detection per frame),
+        matching RC1's original single-plate behavior exactly.
         """
         stats = VideoRunStats()
 
         for frame_idx, timestamp, image in frames:
             stats.num_frames += 1
-            raw_results = self.single_frame_pipeline.process(image, image_id=f"frame_{frame_idx}")
-            results_list = raw_results if multi_plate else [raw_results]
+            if multi_plate:
+                results_list = self.single_frame_pipeline.process_all(image, image_id=f"frame_{frame_idx}")
+            else:
+                results_list = [self.single_frame_pipeline.process(image, image_id=f"frame_{frame_idx}")]
 
             observations = []
             for r in results_list:

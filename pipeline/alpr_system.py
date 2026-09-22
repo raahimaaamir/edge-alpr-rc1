@@ -56,6 +56,14 @@ class SystemConfig:
     stride: int = 2
     detector_conf_thresh: float = 0.25
 
+    # multi-plate support: when True, process_frame() calls
+    # pipeline.process_all() and lets every detection above
+    # detector_conf_thresh become its own observation, so more than one
+    # vehicle's plate can be tracked from the same frame. Default False
+    # matches RC1's original single-plate-per-frame behavior exactly —
+    # existing callers see no change unless they opt in.
+    multi_plate: bool = False
+
     # tracking (IoU / centre-displacement / max-missed-frames — Week 6)
     tracker: TrackerConfig = field(default_factory=TrackerConfig)
 
@@ -85,6 +93,7 @@ class SystemConfig:
         return {
             "stride": self.stride,
             "detector_conf_thresh": self.detector_conf_thresh,
+            "multi_plate": self.multi_plate,
             "tracker": self.tracker.__dict__,
             "acceptance": self.acceptance.__dict__,
             "rescue_enabled": self.rescue_enabled,
@@ -138,7 +147,14 @@ class ALPRSystem:
     def process_frame(self, stream_id: str, frame, timestamp: Optional[float] = None,
                        frame_idx: Optional[int] = None) -> dict:
         """Feed ONE frame of a stream. Call this repeatedly as frames
-        arrive — no need to have the whole video available up front."""
+        arrive — no need to have the whole video available up front.
+
+        If self.config.multi_plate is True, every detection in the frame
+        (not just the highest-confidence one) becomes its own observation
+        candidate — see SystemConfig.multi_plate. The returned dict's
+        shape differs in that case (a "results" list instead of a single
+        "plate_text"/"status" pair), since there may be more than one
+        plate to report on."""
         stream = self._get_stream(stream_id)
         idx = frame_idx if frame_idx is not None else stream["frame_count"]
         stream["frame_count"] += 1
@@ -146,14 +162,28 @@ class ALPRSystem:
         if idx % self.config.stride != 0:
             return {"stream_id": stream_id, "frame_idx": idx, "sampled": False, "status": "skipped_by_stride"}
 
-        result = self.pipeline.process(frame, image_id=f"{stream_id}_frame{idx}")
+        if self.config.multi_plate:
+            results = self.pipeline.process_all(frame, image_id=f"{stream_id}_frame{idx}")
+        else:
+            results = [self.pipeline.process(frame, image_id=f"{stream_id}_frame{idx}")]
+
         observations = []
-        if result.status != "no_detection":
-            det_conf = getattr(result, "detector_confidence", None)
-            if det_conf is None or det_conf >= self.config.detector_conf_thresh:
-                observations.append(FrameObservation.from_plate_result(idx, timestamp, result))
+        for result in results:
+            if result.status != "no_detection":
+                det_conf = getattr(result, "detector_confidence", None)
+                if det_conf is None or det_conf >= self.config.detector_conf_thresh:
+                    observations.append(FrameObservation.from_plate_result(idx, timestamp, result))
         stream["tracker"].update(idx, observations)
 
+        if self.config.multi_plate:
+            return {
+                "stream_id": stream_id, "frame_idx": idx, "sampled": True,
+                "num_detections": len(results),
+                "results": [{"status": r.status, "plate_text": getattr(r, "plate_text", None)} for r in results],
+                "num_active_tracks": len(stream["tracker"]._active),
+            }
+
+        result = results[0]
         return {
             "stream_id": stream_id, "frame_idx": idx, "sampled": True, "status": result.status,
             "plate_text": getattr(result, "plate_text", None),
