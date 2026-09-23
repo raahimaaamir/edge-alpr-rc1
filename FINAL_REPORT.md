@@ -293,3 +293,102 @@ full reproduction commands for every result in this report (validation
 comparisons, the rule comparison, the rescue-fix verification, the
 test-set regression, and the footprint measurement). All raw results
 are preserved in `eval/results/*.json` for independent inspection.
+
+## 16. Post-handoff engineering pass
+
+After independent review, the supervisor requested a second pass
+focused entirely on engineering cleanup and reproducibility — no new
+OCR research, and explicitly, no new thresholds or heuristics unless a
+fix revealed an actual defect. Nine items, addressed in priority order:
+
+1. **Multi-plate detection**: `AlprPipeline.process()` only ever used
+   the single highest-confidence detection per frame. Added
+   `process_all()` (returns every detection, `process()` left
+   completely unchanged) and wired it through `video_pipeline.py` and
+   `ALPRSystem.SystemConfig.multi_plate`. This surfaced a genuine,
+   previously-unexercised bug: `video_pipeline.py`'s existing
+   `multi_plate` flag assumed `process()` would return a list, which it
+   never did — fixed as part of this work. New regression test
+   (`test_multi_plate.py`) confirms two plates in one frame produce two
+   correctly-tracked, independently-read vehicles end to end.
+
+2. **Portable `frozen_config.json`**: previously recorded absolute,
+   machine-specific paths. `dump_frozen_config.py` now records paths
+   relative to the repository root, plus the exact git commit SHA and
+   tag this configuration was frozen against, and the detector's own
+   identifier, package version, and SHA-256 (located via the same
+   cache-directory convention `open-image-models` itself uses, rather
+   than a hardcoded filename). A real crash bug — computing a hash on a
+   detector that hadn't been downloaded yet — was caught and fixed
+   before shipping.
+
+3. **Pinned runtime dependencies**: `requirements-runtime.txt`, pinned
+   to the exact versions already verified in a clean-environment test
+   (Python 3.12.3; `onnxruntime==1.30.0`, `opencv-python==5.0.0.93`,
+   `numpy==2.5.3`, `pyyaml==6.0.3`, `open-image-models==0.6.0`).
+   `requirements-training.txt` added too, with an explicit note that
+   unlike the runtime pins, it is not independently clean-environment
+   verified. Confirmed with a full second clean-environment test —
+   fresh clone, fresh venv, pinned install — reproducing byte-identical
+   results to every prior run.
+
+4. **Comprehensive RC1 decision-path tests**: prior tests covered the
+   tracker/fusion utilities but not `decide_rc1`, the plate-profile
+   check, or the rescue policy directly. `test_rc1_decision_path.py`
+   now tests all of it against the real code: correct agreement,
+   low-confidence rejection, profile-based rejection, profile-skip on
+   unknown jurisdiction, rescue succeeding on its own merits, rescue
+   correctly declining to override a failure it can't independently
+   justify, the zero-detection case, and output-schema consistency
+   across every status.
+
+5. **README/code consistency**: literally running every command in the
+   README surfaced two real bugs, not just wording problems — the
+   documented video-CLI argument format didn't match the actual
+   argparse setup (a positional argument, documented as a `--flag`),
+   and `week9_mp4_runner.py` had a genuine import-ordering bug: its
+   `sys.path` fix lived inside the `if __name__ == "__main__":` guard,
+   too late for a top-level import earlier in the same file that
+   needed it. Also documented `ALPRSystem.process_image()`, which
+   existed in the code but was entirely missing from the README, and
+   added an explicit table clarifying which entry points do and don't
+   apply RC1's reliability layer.
+
+6. **Quality-gate clarification**: the crop-size check
+   (`quality.assess_quality`'s `min_dimension_ok`) is now explicitly
+   documented as a basic sanity guard, not a validated OCR-quality
+   threshold, and is genuinely configurable (`AlprPipeline`'s
+   constructor, and `SystemConfig.quality_min_width`/`quality_min_height`,
+   previously recorded but not live, now actually applied). Separately,
+   `edge_margin_px` telemetry — promised in the output schema — was
+   silently `None` from both `ALPRSystem.process_frame()` and the
+   rescue path; only `video_pipeline.py` ever computed it. Both fixed,
+   verified against exact expected numeric values.
+
+7. **Detector reproducibility**: documented exactly how to reproduce
+   the same detector artifact — the `open-image-models==0.6.0` pin is
+   the actual reproducibility mechanism (PyPI versions are immutable),
+   with `frozen_config.json`'s recorded hash as the way to confirm it,
+   not just trust it.
+
+8. **`THIRD_PARTY_NOTICES.md`**: datasets (UFPR-ALPR, RodoSol-ALPR —
+   both non-redistributable per their license agreements, confirmed
+   directly against their source pages), models (`open-image-models`
+   and `fast-plate-ocr`, both MIT, same author; the underlying YOLOv9
+   architecture's own citation), and package licenses. One genuine gap
+   flagged explicitly rather than guessed: the exact Kaggle dataset
+   used for V1.1's real US-plate samples isn't recorded anywhere in
+   this project's existing documentation.
+
+9. **Final packaging**: `ufpr_video_loader.py`/`rodosol_loader.py`
+   moved from `pipeline/` to `eval/` — their only callers already live
+   there, and their hardcoded paths had been quietly contradicting the
+   README's claim that `pipeline/` is fully portable. Confirmed no
+   tracked secrets/credentials anywhere in the repository or its
+   history. RC1 tag moved to this final commit (see `HANDOFF_CHECKLIST.md`
+   for the complete final clean-environment verification).
+
+Every fix in this section was verified against the real code before
+shipping, not just asserted — either through a targeted unit test, a
+new persisted regression test, or (for the README/CLI fixes) literally
+running the documented command and confirming the actual output.
