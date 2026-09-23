@@ -20,6 +20,17 @@ rather than holding an entire video in memory.
 
 from pathlib import Path
 from typing import Optional
+import sys
+
+# alpr_system.py -> week9_rescue_policy.py -> tiled_detection_rescue.py
+# imports `pipeline.result_types` (package-style) — this needs the repo
+# root on sys.path BEFORE the alpr_system import below runs, not just
+# inside the `if __name__ == "__main__":` guard further down (which is
+# too late for this specific import chain — this was a real bug: running
+# `python3 week9_mp4_runner.py` failed with `ModuleNotFoundError: No
+# module named 'pipeline'` before this fix, caught by actually running
+# every command in the README rather than assuming it worked).
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from alpr_system import ALPRSystem, SystemConfig
 from own_video_loader import extract_frames
@@ -60,9 +71,7 @@ def run_on_mp4(system: ALPRSystem, video_path, stream_id: Optional[str] = None,
 if __name__ == "__main__":
     import argparse
     import json
-    import sys
 
-    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
     from alpr_pipeline import AlprPipeline
 
     parser = argparse.ArgumentParser()
