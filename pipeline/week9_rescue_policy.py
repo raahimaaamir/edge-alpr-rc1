@@ -120,7 +120,20 @@ def maybe_rescue(
         rescue_latency_ms += tiling_latency_ms
         for r in results:
             if r.status == "ok":
-                new_observations.append(FrameObservation.from_plate_result(frame_idx, None, r))
+                # r.bbox is already mapped back to full-frame coordinates by
+                # tiled_rescue_detect_and_recognize, matching `image`'s own
+                # coordinate space — same edge-margin computation as the
+                # normal (non-rescue) path in video_pipeline.py, so this
+                # telemetry is populated consistently regardless of which
+                # path an observation came through.
+                edge_margin_px = None
+                bbox = getattr(r, "bbox", None)
+                frame_shape = getattr(image, "shape", None)
+                if bbox is not None and frame_shape is not None and len(frame_shape) >= 2:
+                    frame_h, frame_w = frame_shape[0], frame_shape[1]
+                    edge_margin_px = min(bbox.x1, bbox.y1, frame_w - bbox.x2, frame_h - bbox.y2)
+                new_observations.append(FrameObservation.from_plate_result(
+                    frame_idx, None, r, edge_margin_px=edge_margin_px))
 
     # decided on THEIR OWN — never blended with the original ambiguous pool —
     # but through the EXACT SAME final decision rule as the normal path

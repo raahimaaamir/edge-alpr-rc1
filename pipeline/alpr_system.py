@@ -24,19 +24,17 @@ thresholds, Top-K, minimum agreement, rescue enable/config, and (with the
 one documented limitation below) quality thresholds. Nothing here is
 hard-coded.
 
-LIMITATION, stated plainly rather than overclaimed: AlprPipeline.process()
-(the frozen Week 5 single-frame pipeline) makes its own low_quality
-accept/reject decision internally, using quality.py's own hard-coded
-thresholds (MIN_WIDTH=40, MIN_HEIGHT=15, BLUR_THRESHOLD=60.0), BEFORE this
-class ever sees the result — by the time process() returns, a low_quality
-rejection has already happened and recognition was never attempted.
-SystemConfig's quality_* fields are recorded and reported for
-documentation/reproducibility, but per the instruction to keep the frozen
-pipeline unchanged, they do not currently override that internal gate —
-doing so would require either modifying quality.py (not done, per
-instructions) or re-implementing crop/quality/recognize outside
-AlprPipeline.process() (a larger change than this week's scope). This is
-flagged here explicitly rather than silently claimed as configurable.
+LIMITATION, UPDATED per supervisor's post-handoff engineering pass:
+previously, SystemConfig's quality_* fields were recorded for
+documentation only and did not affect the pipeline's actual behavior
+(quality.py's crop-size gate was hard-coded, not configurable). The
+minimum-dimension check (quality_min_width/quality_min_height) is now a
+genuine, live override — ALPRSystem.__init__ applies them onto the
+AlprPipeline instance it's given (see below). quality_blur_threshold
+remains recorded-but-not-a-gate, matching quality.py: blur/exposure were
+never wired into any accept/reject decision to begin with (measurement-
+only telemetry), so there is no live gate for that field to override —
+this is unchanged, not a remaining gap.
 """
 
 from dataclasses import dataclass, field
@@ -82,9 +80,11 @@ class SystemConfig:
     rescue_enabled: bool = True
     rescue: RescuePolicyConfig = field(default_factory=RescuePolicyConfig)
 
-    # quality thresholds — recorded for documentation/reproducibility;
-    # see the LIMITATION note in the module docstring for why these are
-    # not (yet) live overrides of the frozen pipeline's internal gate.
+    # quality thresholds — the minimum-dimension check is a basic sanity
+    # guard (see quality.py's module docstring), configurable here since
+    # ALPRSystem.__init__ applies these onto the AlprPipeline instance it's
+    # given. blur/exposure remain measurement-only telemetry, unaffected by
+    # anything here — they were never a gate to begin with (see quality.py).
     quality_min_width: int = 40
     quality_min_height: int = 15
     quality_blur_threshold: float = 60.0
@@ -128,9 +128,17 @@ class ALPRSystem:
         """pipeline: an AlprPipeline instance (from alpr_pipeline.py,
         unmodified). Passed in rather than constructed here, so callers
         can supply a specific recognizer weights file (e.g. to compare V1
-        vs V1.1) without this class needing to know about that."""
+        vs V1.1) without this class needing to know about that.
+
+        config.quality_min_width/quality_min_height are applied onto the
+        given pipeline here (overriding whatever it was constructed
+        with) — the basic sanity-guard crop-size thresholds (see
+        quality.py's module docstring) are genuinely configurable through
+        SystemConfig, not just recorded for documentation."""
         self.pipeline = pipeline
         self.config = config or SystemConfig()
+        self.pipeline.min_crop_width = self.config.quality_min_width
+        self.pipeline.min_crop_height = self.config.quality_min_height
         self._streams: dict = {}
 
     # ---- single image, no tracking ----
@@ -172,7 +180,14 @@ class ALPRSystem:
             if result.status != "no_detection":
                 det_conf = getattr(result, "detector_confidence", None)
                 if det_conf is None or det_conf >= self.config.detector_conf_thresh:
-                    observations.append(FrameObservation.from_plate_result(idx, timestamp, result))
+                    edge_margin_px = None
+                    bbox = getattr(result, "bbox", None)
+                    frame_shape = getattr(frame, "shape", None)
+                    if bbox is not None and frame_shape is not None and len(frame_shape) >= 2:
+                        frame_h, frame_w = frame_shape[0], frame_shape[1]
+                        edge_margin_px = min(bbox.x1, bbox.y1, frame_w - bbox.x2, frame_h - bbox.y2)
+                    observations.append(FrameObservation.from_plate_result(
+                        idx, timestamp, result, edge_margin_px=edge_margin_px))
         stream["tracker"].update(idx, observations)
 
         if self.config.multi_plate:

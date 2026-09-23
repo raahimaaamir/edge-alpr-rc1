@@ -90,7 +90,9 @@ result_types_mod.BoundingBox = BoundingBox
 result_types_mod.PlateResult = PlateResult
 result_types_mod.StageTimings = StageTimings
 result_types_mod.QualityIndicators = QualityIndicators
-quality_mod.assess_quality = lambda crop: QualityIndicators(crop.shape[1], crop.shape[0], 100.0, False, True)
+quality_mod.assess_quality = lambda crop, min_width=40, min_height=15: QualityIndicators(crop.shape[1], crop.shape[0], 100.0, False, True)
+quality_mod.MIN_WIDTH = 40
+quality_mod.MIN_HEIGHT = 15
 
 # alpr_pipeline.py imports these at module load time regardless of
 # whether the defaults are ever instantiated (we always pass explicit

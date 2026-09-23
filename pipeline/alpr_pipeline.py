@@ -42,14 +42,22 @@ import numpy as np
 
 from pipeline.detector import PlateDetector
 from pipeline.recognizer import PlateRecognizer
-from pipeline.quality import assess_quality
+from pipeline.quality import assess_quality, MIN_WIDTH, MIN_HEIGHT
 from pipeline.result_types import PlateResult, StageTimings
 
 
 class AlprPipeline:
-    def __init__(self, detector: Optional[PlateDetector] = None, recognizer: Optional[PlateRecognizer] = None):
+    def __init__(self, detector: Optional[PlateDetector] = None, recognizer: Optional[PlateRecognizer] = None,
+                 min_crop_width: int = MIN_WIDTH, min_crop_height: int = MIN_HEIGHT):
+        """min_crop_width/min_crop_height: the basic sanity-guard crop-size
+        thresholds (see quality.py's module docstring — this is NOT a
+        validated OCR-quality cutoff). Configurable here since they are a
+        guard, not a calibrated one-true-value; default to quality.py's
+        own defaults."""
         self.detector = detector or PlateDetector()
         self.recognizer = recognizer or PlateRecognizer()
+        self.min_crop_width = min_crop_width
+        self.min_crop_height = min_crop_height
 
     def _process_one_detection(self, image: np.ndarray, bbox, det_conf: float,
                                 save_crop_dir: Optional[str], image_id: str,
@@ -73,7 +81,7 @@ class AlprPipeline:
             )
 
         t0 = time.perf_counter()
-        quality = assess_quality(crop)
+        quality = assess_quality(crop, min_width=self.min_crop_width, min_height=self.min_crop_height)
         timings.quality_ms = (time.perf_counter() - t0) * 1000
 
         crop_path = None
