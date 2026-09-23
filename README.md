@@ -28,11 +28,19 @@ provides CUDA/cuDNN already configured. If you're not using that
 container, you need Python 3.10+ and:
 
 ```bash
-pip install -r requirements-runtime.txt
+pip install -r requirements-runtime.txt --break-system-packages
+```
+
+Or, to avoid needing that flag at all (the approach this project's own
+clean-environment tests used):
+```bash
+python3 -m venv venv && source venv/bin/activate && pip install -r requirements-runtime.txt
 ```
 
 (TensorFlow is only needed if you re-train or re-export a recognizer —
-running the frozen pipeline needs only `onnxruntime`.)
+running the frozen pipeline needs only `onnxruntime`. If you do need to
+train, see `requirements-training.txt` — read its own header first, it's
+less rigorously verified than the runtime pins.)
 
 No manual path configuration is required — every script auto-detects
 this package's own location. If you move `pipeline/` to a different
@@ -42,9 +50,34 @@ package's root directory before running anything:
 export ALPR_ROOT=/path/to/this/package
 ```
 
+## Which entry point should I use?
+
+There are three ways to get a plate reading, and it matters which one
+you pick — only one of them applies RC1's reliability layer (temporal
+agreement across frames, confidence check, plate-profile validation).
+The other two give you a raw, single-frame OCR reading with none of
+that — not wrong, just a different, weaker guarantee, and it's
+important not to mix them up:
+
+| Call | Reliability layer? | What you get |
+|---|---|---|
+| `AlprPipeline.process(image)` | **No** | One `PlateResult` from the single highest-confidence detection in that one image |
+| `AlprPipeline.process_all(image)` | **No** | A `list[PlateResult]`, one per detection in that one image (multi-plate) |
+| `ALPRSystem.process_image(image)` | **No** | Same as `process()` above, just returned as a plain dict — a thin convenience wrapper, nothing more |
+| `ALPRSystem.process_frame()` + `finalize_track()`/`finalize_stream()`, or `week9_mp4_runner.py` (which wraps exactly this) | **Yes** | Pools every sampled frame of a tracked vehicle, then applies agreement + confidence + optional plate-profile checks before accepting or abstaining |
+
+If you're reading a single photo where there's no video to track across,
+the single-frame calls are the right tool and there's nothing missing —
+there's no "vehicle over time" for a reliability layer to pool evidence
+from in the first place. The distinction matters when you have a video
+or a live stream: use the streaming path if you want RC1's actual
+accept-or-abstain guarantee; use the single-frame calls only if you
+specifically want one frame's raw reading (e.g. for debugging, or
+building your own custom aggregation).
+
 ## Quick start
 
-**Single image:**
+**Single image (no reliability layer — see table above):**
 ```python
 import sys
 sys.path.insert(0, "pipeline")
@@ -57,16 +90,18 @@ result = pipeline.process(image)
 print(result.status, result.plate_text, result.recognition_confidence)
 ```
 
-**Video / streaming, one command:**
+**Video / streaming, one command (full reliability layer):**
 ```bash
 cd pipeline
-python3 week9_mp4_runner.py --video-path /path/to/video.mp4
+python3 week9_mp4_runner.py /path/to/video.mp4 --stride 2
 ```
-This runs the full detect → track → fuse → reliability-check path and
-prints one structured result per vehicle encounter.
+`video_path` is positional (not a flag); `--stride` is optional and
+defaults to 2. This runs the full detect → track → fuse →
+reliability-check path and prints one structured result per vehicle
+encounter.
 
 **Or via the component API** (for streaming frame-by-frame, e.g. from a
-live camera feed rather than a file):
+live camera feed rather than a file — also full reliability layer):
 ```python
 from pipeline.alpr_pipeline import AlprPipeline
 from alpr_system import ALPRSystem, SystemConfig
@@ -77,6 +112,12 @@ for frame_idx, frame in enumerate(frames):
     system.process_frame("stream1", frame, frame_idx=frame_idx)
 results = system.finalize_stream("stream1", candidate_frame_provider=lambda track: all_frames)
 ```
+
+**`ALPRSystem` also exposes `process_image(image)`** as a convenience —
+it's just `pipeline.process(image).to_dict()` under the hood, so it has
+the same no-reliability-layer semantics as the direct call above; it
+exists so callers already holding an `ALPRSystem` instance don't need a
+separate `AlprPipeline` reference for one-off single-image reads.
 
 ## Structured output
 
@@ -114,9 +155,11 @@ cached automatically on first run — it isn't bundled in this repository.
 
 `frozen_config.json` is the single authoritative record of the complete
 runtime configuration (tracker, fusion, decision rule, rescue policy,
-and both recognizer paths/hashes). Regenerate it any time from
-`pipeline/dump_frozen_config.py` — it's derived from the actual code
-defaults, never maintained by hand.
+detector identifier/hash, recognizer paths/hashes, and the exact git
+commit/tag this configuration was frozen against). Regenerate it any
+time from `pipeline/dump_frozen_config.py` — it's derived from the
+actual code defaults, never maintained by hand. Its paths are
+repository-relative, so it stays correct if this repository is moved.
 
 To roll back to V1: `PlateRecognizer(model_path=recognizer.V1_FROZEN_MODEL_PATH)`.
 
@@ -142,16 +185,19 @@ number already computed against the real data, for provenance).
 ```bash
 python3 tests/test_stage3_synthetic.py
 python3 tests/test_video_pipeline_integration.py
+python3 tests/test_multi_plate.py
+python3 tests/test_rc1_decision_path.py
 ```
-Both use synthetic/constructed data — no real dataset or model files
-needed. Both should print `PASS` for every sub-test and end with `ALL
-SYNTHETIC TESTS PASSED` / `INTEGRATION TEST PASSED`.
+All four use synthetic/constructed data — no real dataset or model files
+needed. Each should print `PASS` for every sub-test and end with an
+`ALL ... PASSED` line.
 
 ## Repository structure
 
 ```
 pipeline/       live, frozen system — the actual deployed code
 tests/          regression/integration tests (synthetic data, no models needed)
+examples/       13 representative real images (own-collected, not UFPR) with a runner script
 training/       V1.1 dataset construction + fine-tuning scripts
 eval/           benchmark scripts, Week 5 through RC1 (historical — see note below)
 eval/results/   every benchmark's raw output, for provenance
@@ -185,10 +231,11 @@ path.
 
 ## What's implemented, what's deferred, and what's next
 
-**Implemented:** detection, tracking, multi-frame fusion, the RC1
-reliability layer (agreement + confidence + optional plate-format
-validation), rescue for detection-related failures, the V1.1 recognizer
-fine-tune, full telemetry recording.
+**Implemented:** detection (including multi-plate — see `process_all()`
+above), tracking, multi-frame fusion, the RC1 reliability layer
+(agreement + confidence + optional plate-format validation), rescue for
+detection-related failures, the V1.1 recognizer fine-tune, full
+telemetry recording.
 
 **Deferred (deliberately, not forgotten):** a data-derived visual-quality
 operating gate (needs a broader validation set with genuinely degraded
