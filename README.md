@@ -28,7 +28,7 @@ provides CUDA/cuDNN already configured. If you're not using that
 container, you need Python 3.10+ and:
 
 ```bash
-pip install onnxruntime opencv-python numpy pyyaml open-image-models --break-system-packages
+pip install -r requirements-runtime.txt
 ```
 
 (TensorFlow is only needed if you re-train or re-export a recognizer —

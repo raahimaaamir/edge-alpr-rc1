@@ -1,0 +1,15 @@
+# Runtime dependencies for the frozen RC1 pipeline (inference only — no
+# training). Pinned to the exact versions verified in a clean-environment
+# test on 2026-09-19: fresh clone, isolated venv, nothing pre-installed,
+# every test and example passed, hashes matched.
+#
+# Python: 3.12.3 (confirmed working; not strictly required to be this
+# exact patch version, but this is what was tested)
+#
+# Install with:
+#   pip install -r requirements-runtime.txt
+onnxruntime==1.30.0
+opencv-python==5.0.0.93
+numpy==2.5.3
+pyyaml==6.0.3
+open-image-models==0.6.0

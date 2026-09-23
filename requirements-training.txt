@@ -1,0 +1,22 @@
+# Training/fine-tuning dependencies (needed only for training/ and the
+# eval/ scripts under scripts/ — NOT needed to run the frozen RC1
+# pipeline itself; see requirements-runtime.txt for that).
+#
+# UNLIKE requirements-runtime.txt, this file is NOT independently
+# verified via a clean pip-install test — V1.1's training was run
+# inside a pre-built container, not a from-scratch pip environment, so
+# these pins have not been proven to reproduce training bit-for-bit the
+# way the runtime deps were proven to reproduce inference. What IS
+# confirmed:
+#
+#   Container: nvcr.io/nvidia/tensorflow:25.02-tf2-py3
+#   TensorFlow: 2.17.0 (as reported by that container)
+#   Training CLI: fast-plate-ocr (invoked as `fast-plate-ocr train ...`
+#                 — NOT `python3 -m fast_plate_ocr.cli.cli train ...`,
+#                 which looks plausible but is wrong)
+#
+# If reproducing training exactly matters, pulling the container above
+# is the most reliable path; the pins below are a best-effort pip
+# equivalent, not independently verified.
+tensorflow==2.17.0
+fast-plate-ocr
