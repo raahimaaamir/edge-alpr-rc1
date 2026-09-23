@@ -163,6 +163,39 @@ repository-relative, so it stays correct if this repository is moved.
 
 To roll back to V1: `PlateRecognizer(model_path=recognizer.V1_FROZEN_MODEL_PATH)`.
 
+## Detector reproducibility
+
+Unlike the recognizer (bundled in this repository with a fixed hash),
+the detector is a third-party pretrained model, fetched at runtime —
+here's exactly how to reproduce the same one:
+
+- **Source**: the `open-image-models` PyPI package
+  (https://pypi.org/project/open-image-models/), pinned to `==0.6.0` in
+  `requirements-runtime.txt` — this pin is the actual reproducibility
+  mechanism: PyPI package versions are immutable, so installing this
+  exact version gets the same underlying model download every time.
+- **Model identifier**: `yolo-v9-t-384-license-plate-end2end` (see
+  `detector.py`'s `DEFAULT_MODEL` constant) — an unmodified, off-the-
+  shelf pretrained YOLOv9-tiny checkpoint; not fine-tuned on this
+  project's data, and no trainable checkpoint or training config is
+  distributed for it (see `detector.py`'s module docstring for the full
+  known-limitation note).
+- **How it's obtained**: automatically, the first time `PlateDetector()`
+  is instantiated — `open-image-models` downloads the ONNX file and
+  caches it at `~/.cache/open-image-models/<model_identifier>/`. Every
+  subsequent run reuses the cached file; no re-download happens unless
+  that cache is cleared.
+- **Internet access**: required on that one first run, not after.
+- **SHA-256**: not a fixed value shippable in this README (the file
+  isn't bundled — see above), but `pipeline/dump_frozen_config.py`
+  computes it from whatever's actually in your local cache and records
+  it in `frozen_config.json`'s `detector.onnx_sha256` field, alongside
+  the package version actually installed. Comparing that field's value
+  across two machines both running the pinned `open-image-models==0.6.0`
+  is the definitive check that they have the identical detector artifact
+  — the version pin is the strong guarantee; the hash comparison is how
+  to actually confirm it, rather than just trust it.
+
 ## Dataset
 
 This project uses the **UFPR-ALPR** dataset (Laroca et al., IJCNN 2018) —
