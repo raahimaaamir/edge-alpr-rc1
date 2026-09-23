@@ -1,6 +1,12 @@
 {
   "frozen_date": "2026-09-12",
   "release_candidate": "RC1",
+  "git": {
+    "commit_sha": "6deac7e35b8a86e03ab7bf61665b73aa0d17656f",
+    "tag_exact": "RC1",
+    "describe": "RC1",
+    "note": "tag_exact is None if HEAD is not exactly on a tagged commit \u2014 tag this commit (e.g. `git tag -a RC1 -m \"Release Candidate 1\"`) and rerun this script to capture it."
+  },
   "stride": 2,
   "tracking_and_fusion": {
     "tracker": {
@@ -54,11 +60,22 @@
       "min_agreement_count": 2
     }
   },
+  "detector": {
+    "model_identifier": "yolo-v9-t-384-license-plate-end2end",
+    "package": "open-image-models",
+    "package_version": null,
+    "conf_thresh": 0.25,
+    "onnx_path": "/home/raahima/.cache/open-image-models/yolo-v9-t-384-license-plate-end2end/yolo-v9-t-384-license-plates-end2end.onnx",
+    "onnx_sha256": "888397b96d761c89db40bc9c305838e8652660f5e282c2cadebbe8d2951a77a8",
+    "source_note": "Fetched and cached automatically by the open-image-models package on first use (requires internet access that one time; cached locally thereafter, at ~/.cache/open-image-models/). Not bundled in this repository. An unmodified, off-the-shelf pretrained model, not a trainable checkpoint \u2014 see detector.py's module docstring.",
+    "onnx_path_note": "the recorded path is this machine's local cache location, NOT repository-relative \u2014 the detector artifact lives outside the repo by design (see source_note); this path will differ on every machine."
+  },
   "recognizer": {
-    "default_model_path": "/workspace/home/alpr-week5/RC1_PACKAGE/output/v1_1_finetune_balanced/onnx/best.onnx",
+    "default_model_path": "output/v1_1_finetune_balanced/onnx/best.onnx",
     "default_model_sha256": "c9c4f6196c6c1a0a10e9d06d74ee091df95cb00a896c1f213241ac1a179feb28",
-    "config_path": "/workspace/home/alpr-week5/RC1_PACKAGE/weights/cct_s_v2_global_plate_config.yaml",
-    "v1_fallback_model_path": "/workspace/home/alpr-week5/RC1_PACKAGE/output/full_run1/onnx/best.onnx",
-    "v1_fallback_model_sha256": "5e03d7fdbc6120262a3fabb9a6c39a299426338f4e538a51d75f378a8f7308e9"
+    "config_path": "weights/cct_s_v2_global_plate_config.yaml",
+    "v1_fallback_model_path": "output/full_run1/onnx/best.onnx",
+    "v1_fallback_model_sha256": "5e03d7fdbc6120262a3fabb9a6c39a299426338f4e538a51d75f378a8f7308e9",
+    "path_note": "paths are relative to the repository root (this file's grandparent directory) \u2014 portable regardless of where the repo is cloned/moved."
   }
 }
